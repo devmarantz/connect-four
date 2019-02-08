@@ -4,5 +4,9 @@
 - [X] Markup
 - [X] Styles
 - [X] Generate Board
-- [ ] Turn
+- [X] Game rules
+    - [X] select input toggles color
+    - [X] change who's turn it is
+    - [X] change who's turn in display
+    - [X] disable invalid slots
 - [ ] Win Logic

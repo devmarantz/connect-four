@@ -1,0 +1,16 @@
+@import 'variables.css';
+@import 'headers.css';
+@import 'board.css';
+
+
+/* Use Flex to center display */
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;  /* You can't scroll */
+    margin: 0;
+
+    font-family: sans-serif;
+}

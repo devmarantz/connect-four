@@ -1,0 +1,26 @@
+h1{
+    color: var(--background-color);
+    margin: 0;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 40px;
+    text-shadow: 2px 2px 0px rgba(107, 194, 216, 0.4);
+    letter-spacing: 1px;
+
+    /* Fancy way of moving the title */
+    /* transform: translate(-30vw) rotate(-10deg); */
+}
+
+h2#turn-indicator{
+    background-color: #333;
+    color: white;
+    padding: 13px;
+    text-transform: uppercase;
+}
+
+h2#turn-indicator #player-indicator.player1{
+    color: var(--player1-color)
+}
+
+h2#turn-indicator #player-indicator.player2{
+    color: var(--player2-color)
+}

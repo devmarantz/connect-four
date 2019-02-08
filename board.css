@@ -32,3 +32,8 @@
 .slot input[type=checkbox]{
     display: none;
 }
+
+/* This is CSS for when a checkbox is clicked */
+/* .slot input[type=checkbox]:checked{
+    background-color: blueviolet;
+} */

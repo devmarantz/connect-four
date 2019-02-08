@@ -1,7 +1,7 @@
 # Connect Four
 
 ##TODO
-- [ ] Markup
+- [X] Markup
 - [ ] Styles
 - [ ] Generate Board
 - [ ] Turn

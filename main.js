@@ -141,7 +141,7 @@ function upLeft(col, row, currPlayer){
     //search Up Left
     for (let i =1; i < 4; i++){
         //break if out of bounds
-        if (col - i <= 0 || row + 1 >=BOARDROWS) break;
+        if (col - i < 0 || row + i >=BOARDROWS) break;
         const currSlotPlayer = document.getElementById(`slot${col - i}${row + i}`).parentElement.className;
         if(currSlotPlayer === currPlayer) sameColorNeighbors++;
         else break;
@@ -150,7 +150,7 @@ function upLeft(col, row, currPlayer){
     //search Down RIght
     for (let i = 1; i < 4; i++){
         //break if out of bounds
-        if (col + i >= BOARDCOLS || row - 1 < 0) break;
+        if (col + i >= BOARDCOLS || row - i < 0) break;
         const currSlotPlayer = document.getElementById(`slot${col + i}${row - i}`).parentElement.className;
         if(currSlotPlayer === currPlayer) sameColorNeighbors++;
         else break;
@@ -164,7 +164,7 @@ function upRight(col, row, currPlayer){
     //search Up Right
     for (let i = 1; i < 4; i++){
         //break if out of bounds
-        if (col + i >= BOARDCOLS || row + 1 >=BOARDROWS) break;
+        if (col + i >= BOARDCOLS || row + i >=BOARDROWS) break;
         const currSlotPlayer = document.getElementById(`slot${col + i}${row + i}`).parentElement.className;
         if(currSlotPlayer === currPlayer) sameColorNeighbors++;
         else break;
@@ -173,7 +173,7 @@ function upRight(col, row, currPlayer){
     //search Down Left
     for (let i = 1; i < 4; i++){
         //break if out of bounds
-        if (col - i <= 0 || row - 1 <= 0) break;
+        if (col - i < 0 || row - i < 0) break;
         const currSlotPlayer = document.getElementById(`slot${col - i}${row - i}`).parentElement.className;
         if(currSlotPlayer === currPlayer) sameColorNeighbors++;
         else break;

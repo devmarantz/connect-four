@@ -11,13 +11,33 @@
 <body>
 
     <h1>Connect Four</h1>
+
+    <section style='display: flex;' >
+        <div class="custom-select" style="width:50px;">
+            <select id="connectValue">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+
+        <button type="button" onclick="initialize()" style="width:75px; height:25px;">Reset</button>
+    </section>
+
     <h2 id="turn-indicator">
         <span class='player1' id='player-indicator'>Player 1</span>
         Turn
     </h2>
 
+
+
     <div id='board'>
     </div>
+
+    
 
     
     <script src="main.js"></script>

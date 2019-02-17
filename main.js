@@ -4,6 +4,9 @@ const BOARDROWS = 6;
 
 const board = document.getElementById('board');
 const playerIndicator = document.getElementById('player-indicator');
+var connectID = document.getElementById('connectValue');
+var connectNum = connectID.options[connectID.selectedIndex].value;
+
 
 //board.innerHTML = <p>Hi</p>;
 
@@ -29,8 +32,15 @@ for(let row = BOARDROWS - 1; row >= 0; row--){
     }
 }
 
-//Set the board's HTML
+
+//Set the board's HTML the first time
 board.innerHTML = boardHTML;
+
+function initialize(){
+//Reset the board's HTML 
+board.innerHTML = boardHTML;
+}
+
 
 let player1Turn = true;
 function runTurn(input){
@@ -56,9 +66,12 @@ function runTurn(input){
         neighbor.disabled = false;
     }
 
+    
+    var connectID = document.getElementById('connectValue');
+    var connectNum = connectID.options[connectID.selectedIndex].value;
 
     //Check if it's a win
-    let isWin = checkWin(parseInt(col), parseInt(row), player1Turn ? 'player1' : 'player2');
+    let isWin = checkWin(parseInt(col), parseInt(row), player1Turn ? 'player1' : 'player2', connectNum);
     if (isWin){
         alert('Winner!!');
         return;
@@ -87,19 +100,22 @@ function runTurn(input){
 //Check if it's a win
 //Update win text (win celebrations)
 
-function checkWin(col, row, currPlayer) {
+function checkWin(col, row, currPlayer, winNum) {
     //check down
-    return checkDown(col, row, currPlayer) || checkAcross(col, row, currPlayer) || checkDiagonal(col, row, currPlayer);
+    return checkDown(col, row, currPlayer, winNum) || checkAcross(col, row, currPlayer, winNum) || checkDiagonal(col, row, currPlayer, winNum);
     //check across
     
     //check diagonals
     
 }
 
-function checkDown(col, row, currPlayer){
-    if(row< 3) return false; //Can't connect if there isn't four
+function checkDown(col, row, currPlayer, winNum){
+    ////Can't connect if there isn't four
+    // if(row< 3) return false;
+    if(row< winNum - 1) return false;
 
-    for (let j = row - 1; j > row - 4; j--){
+
+    for (let j = row - 1; j > row - winNum; j--){
         const currSlotPlayer = document.getElementById(`slot${col}${j}`).parentElement.className;
         if (currSlotPlayer !== currPlayer) return false;
     }
@@ -107,11 +123,11 @@ function checkDown(col, row, currPlayer){
     return true;
 }
 
-function checkAcross(col, row, currPlayer){
+function checkAcross(col, row, currPlayer, winNum){
     let sameColorNeighbors = 0;
 
     //check to the right
-    for (let i = col + 1; i < col + 4; i++) {
+    for (let i = col + 1; i < col + winNum; i++) {
         //break if out of bounds
         if (i >= BOARDCOLS) break;
         const currSlotPlayer = document.getElementById(`slot${i}${row}`).parentElement.className;
@@ -120,7 +136,7 @@ function checkAcross(col, row, currPlayer){
     }
 
     //check to the left
-    for (let i = col - 1; i > col - 4; i--) {
+    for (let i = col - 1; i > col - winNum; i--) {
         //break if out of bounds
         if (i < 0) break;
         const currSlotPlayer = document.getElementById(`slot${i}${row}`).parentElement.className;
@@ -128,18 +144,20 @@ function checkAcross(col, row, currPlayer){
         else break;
     }
 
-    return sameColorNeighbors >= 3;
+    // return sameColorNeighbors >= 3;
+    return sameColorNeighbors >= winNum - 1;
+
 }
 
-function checkDiagonal(col, row, currPlayer){
-    return upLeft(col, row, currPlayer) || upRight(col, row, currPlayer);
+function checkDiagonal(col, row, currPlayer, winNum){
+    return upLeft(col, row, currPlayer, winNum) || upRight(col, row, currPlayer, winNum);
 }
 
-function upLeft(col, row, currPlayer){
+function upLeft(col, row, currPlayer, winNum){
     let sameColorNeighbors = 0;
 
     //search Up Left
-    for (let i =1; i < 4; i++){
+    for (let i =1; i < winNum; i++){
         //break if out of bounds
         if (col - i < 0 || row + i >=BOARDROWS) break;
         const currSlotPlayer = document.getElementById(`slot${col - i}${row + i}`).parentElement.className;
@@ -148,21 +166,22 @@ function upLeft(col, row, currPlayer){
     }
 
     //search Down RIght
-    for (let i = 1; i < 4; i++){
+    for (let i = 1; i < winNum; i++){
         //break if out of bounds
         if (col + i >= BOARDCOLS || row - i < 0) break;
         const currSlotPlayer = document.getElementById(`slot${col + i}${row - i}`).parentElement.className;
         if(currSlotPlayer === currPlayer) sameColorNeighbors++;
         else break;
     }
-    return sameColorNeighbors >= 3;
+    // return sameColorNeighbors >= 3;
+    return sameColorNeighbors >= winNum - 1;
 }
 
-function upRight(col, row, currPlayer){
+function upRight(col, row, currPlayer, winNum){
     let sameColorNeighbors = 0;
 
     //search Up Right
-    for (let i = 1; i < 4; i++){
+    for (let i = 1; i < winNum; i++){
         //break if out of bounds
         if (col + i >= BOARDCOLS || row + i >=BOARDROWS) break;
         const currSlotPlayer = document.getElementById(`slot${col + i}${row + i}`).parentElement.className;
@@ -171,12 +190,13 @@ function upRight(col, row, currPlayer){
     }
 
     //search Down Left
-    for (let i = 1; i < 4; i++){
+    for (let i = 1; i < winNum; i++){
         //break if out of bounds
         if (col - i < 0 || row - i < 0) break;
         const currSlotPlayer = document.getElementById(`slot${col - i}${row - i}`).parentElement.className;
         if(currSlotPlayer === currPlayer) sameColorNeighbors++;
         else break;
     }
-    return sameColorNeighbors >= 3;
+    // return sameColorNeighbors >= 3;
+    return sameColorNeighbors >= winNum - 1;
 }

@@ -11,6 +11,7 @@ body{
     align-items: center;
     height: 100vh;  /* You can't scroll */
     margin: 0;
+    background: #b6ecdb;
 
     font-family: sans-serif;
 }

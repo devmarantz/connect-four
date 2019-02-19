@@ -10,4 +10,4 @@
     - [X] change who's turn in display
     - [X] disable invalid slots
 - [X] Win Logic
-- [ ] Make modular
+- [X] Make modular
